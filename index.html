@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Project Idea Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label, select, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #projectIdea {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Coding Project Idea Generator</h1>
+    <form id="projectForm">
+        <label for="time">Time available:</label>
+        <select id="time" required>
+            <option value="1hour">1 hour</option>
+            <option value="3hours">3 hours</option>
+            <option value="1day">1 day</option>
+            <option value="1week">1 week</option>
+        </select>
+
+        <label for="language">Programming language:</label>
+        <select id="language" required>
+            <option value="cpp">C++</option>
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="csharp">C#</option>
+        </select>
+
+        <button type="submit">Generate Project Idea</button>
+    </form>
+
+    <div id="projectIdea"></div>
+
+    <script>
+        const projectIdeas = {
+            defaults: {
+                '1hour': [
+                    "Create a simple command-line calculator",
+                    "Build a random quote generator",
+                    "Implement a basic to-do list"
+                ],
+                '3hours': [
+                    "Develop a basic web scraper",
+                    "Create a simple text-based game",
+                    "Build a currency converter"
+                ],
+                '1day': [
+                    "Implement a basic weather app",
+                    "Create a simple blog platform",
+                    "Build a basic e-commerce website"
+                ],
+                '1week': [
+                    "Develop a social media clone",
+                    "Create a project management tool",
+                    "Build a complex data visualization dashboard"
+                ]
+            },
+            cpp: {
+                '1hour': [
+                    "Create a simple console-based calculator",
+                    "Implement a temperature converter (Celsius to Fahrenheit and vice versa)",
+                    "Build a basic random number guessing game",
+                    "Create a program to check if a number is prime",
+                    "Implement a simple to-do list manager",
+                    "Build a basic string reversal tool",
+                    "Create a program to generate ASCII art",
+                    "Implement a basic password strength checker",
+                    "Build a simple unit converter (e.g., kilometers to miles)",
+                    "Create a program to calculate factorial of a number",
+                    "Create a game hack by modifying memory"
+                ],
+                '3hours': [
+                    "Develop a basic text-based adventure game",
+                    "Create a simple file encryption/decryption tool",
+                    "Implement a basic address book system",
+                    "Build a console-based Tic-Tac-Toe game",
+                    "Create a program to solve basic mathematical equations",
+                    "Implement a simple CSV file parser",
+                    "Build a basic scheduling application",
+                    "Create a program to generate and solve Sudoku puzzles",
+                    "Implement a basic morse code translator",
+                    "Build a simple text-based RPG character creator",
+                    "Create a game hack by modifying memory"
+                ],
+                '1day': [
+                    "Develop a basic image processing application (e.g., apply filters)",
+                    "Create a simple TCP chat server and client",
+                    "Implement a basic spreadsheet application",
+                    "Build a console-based chess game",
+                    "Create a simple database management system",
+                    "Implement a basic compiler for a small custom language",
+                    "Build a simple text editor with syntax highlighting",
+                    "Create a program for audio file format conversion",
+                    "Implement a basic neural network from scratch",
+                    "Build a simple file compression tool",
+                    "Create a game hack by modifying memory"
+                ],
+                '1week': [
+                    "Develop a full-fledged 2D game (e.g., platformer or puzzle game)",
+                    "Create a basic 3D rendering engine",
+                    "Implement a small relational database system",
+                    "Build a complex data structure visualization tool",
+                    "Create a basic operating system kernel",
+                    "Implement a peer-to-peer file sharing application",
+                    "Build a simple web server from scratch",
+                    "Create a basic computer vision application (e.g., face detection)",
+                    "Implement a small compiler for a subset of C++",
+                    "Build a complex simulation system (e.g., traffic, ecosystem)",
+                    "Create a game hack by modifying memory"
+                ]
+            },
+            python: {
+                '1hour': [
+                    "Create a simple calculator with tkinter",
+                    "Build a random password generator",
+                    "Implement a basic file organizer"
+                ],
+                '3hours': [
+                    "Develop a currency converter with API integration",
+                    "Create a text-based adventure game",
+                    "Build a web scraper for a specific website"
+                ],
+                '1day': [
+                    "Implement a basic chatbot using natural language processing",
+                    "Create a simple data visualization tool with matplotlib",
+                    "Build a basic web application with Flask",
+                    "Make a blender plugin that is gartic phone (but for blender)"
+                ],
+                '1week': [
+                    "Develop a full-stack web application with Django",
+                    "Create a machine learning model for image classification",
+                    "Build a RESTful API for a social media platform",
+                    "Make a blender plugin that is gartic phone (but for blender)"
+                ]
+            },
+            javascript: {
+                '1hour': [
+                    "Create a simple countdown timer",
+                    "Build a basic form validator",
+                    "Implement a color picker tool"
+                ],
+                '3hours': [
+                    "Develop a weather app using an API",
+                    "Create a basic quiz game",
+                    "Build a simple task manager with local storage"
+                ],
+                '1day': [
+                    "Implement a real-time chat application using WebSockets",
+                    "Create a simple drawing app with canvas",
+                    "Build a basic e-commerce website frontend"
+                ],
+                '1week': [
+                    "Develop a full-stack MERN (MongoDB, Express, React, Node.js) application",
+                    "Create a complex single-page application (SPA) with React",
+                    "Build a multiplayer browser game"
+                ]
+            },
+            java: {
+                '1hour': [
+                    "Create a simple console-based calculator",
+                    "Implement a basic text file reader/writer",
+                    "Build a random quote generator"
+                ],
+                '3hours': [
+                    "Develop a basic inventory management system",
+                    "Create a simple GUI application using JavaFX",
+                    "Implement a basic encryption/decryption tool"
+                ],
+                '1day': [
+                    "Build a basic REST API using Spring Boot",
+                    "Create a simple database-driven application",
+                    "Implement a basic chat server and client"
+                ],
+                '1week': [
+                    "Develop a full-stack web application with Spring Boot and React",
+                    "Create an Android mobile application",
+                    "Build a multi-threaded simulation of a complex system"
+                ]
+            },
+            csharp: {
+                '1hour': [
+                    "Create a simple console-based number guessing game",
+                    "Implement a basic file organizer",
+                    "Build a random password generator"
+                ],
+                '3hours': [
+                    "Develop a basic Windows Forms application",
+                    "Create a simple text editor",
+                    "Implement a basic unit converter"
+                ],
+                '1day': [
+                    "Build a basic web API using ASP.NET Core",
+                    "Create a simple database-driven application with Entity Framework",
+                    "Implement a basic chat application using SignalR"
+                ],
+                '1week': [
+                    "Develop a full-stack web application with ASP.NET Core and Angular",
+                    "Create a cross-platform mobile app using Xamarin",
+                    "Build a complex Windows Presentation Foundation (WPF) application"
+                ]
+            }
+        };
+
+        function getRandomIdea(ideas) {
+            return ideas[Math.floor(Math.random() * ideas.length)];
+        }
+
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const time = document.getElementById('time').value;
+            const language = document.getElementById('language').value;
+            
+            const languageIdeas = projectIdeas[language][time];
+            const defaultIdeas = projectIdeas.defaults[time];
+            const allIdeas = [...languageIdeas, ...defaultIdeas];
+            
+            const randomIdea = getRandomIdea(allIdeas);
+            
+            document.getElementById('projectIdea').innerHTML = `
+                <h2>Project Idea:</h2>
+                <p>${randomIdea}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
